@@ -7,7 +7,7 @@ class WechallRank extends React.Component {
 		super(props);
 		
 		this.state = {
-			rating: 'Loading...',
+			rating: '....',
 			lastUpdated: this.getDateString()
 		}
 
