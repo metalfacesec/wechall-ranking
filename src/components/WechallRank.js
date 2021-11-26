@@ -19,7 +19,7 @@ class WechallRank extends React.Component {
 	}
 
 	updateRank() {
-		fetch(`http://localhost:8085/api/rank?profile=${this.props.profile}`, {crossDomain:true})
+		fetch(`http://rank.moriarty.work:8085/api/rank?profile=${this.props.profile}`, {crossDomain:true})
 		.then(response => response.json())
 		.then(response => {
 			if (typeof response.data !== "string") {
