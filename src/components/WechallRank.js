@@ -24,11 +24,11 @@ class WechallRank extends React.Component {
 		fetch(`http://${config.baseDomain}:8085/api/rank?profile=${this.props.profile}`, {crossDomain:true})
 		.then(response => response.json())
 		.then(response => {
-			if (typeof response.data !== "string") {
+			if (typeof response.data !== "object" || typeof response.data.rank === "undefined") {
 				return;
 			}
 
-			this.setState({rating: response.data, lastUpdated: this.getDateString()});
+			this.setState({rating: response.data.rank, lastUpdated: response.data.time});
 		})
 		.catch(err => {
 			console.log(err);
@@ -44,7 +44,7 @@ class WechallRank extends React.Component {
 			<div>
 				<div id="rank" className="center">{this.state.rating}</div>
 				<div id="text" className="center">Current Global Wechall Ranking For {this.props.profile}</div>
-				<div id="updated" className="center">Last updated {this.state.lastUpdated}</div>
+				<div id="updated" className="center">Last updated: {this.state.lastUpdated} (GMT)</div>
 			</div>
 		);
 	}
