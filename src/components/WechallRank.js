@@ -2,6 +2,8 @@ import React from "react";
 
 import '../css/WechallRank.css';
 
+const config = require(__dirname+'/../config/config.json');
+
 class WechallRank extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,7 +21,7 @@ class WechallRank extends React.Component {
 	}
 
 	updateRank() {
-		fetch(`http://rank.moriarty.work:8085/api/rank?profile=${this.props.profile}`, {crossDomain:true})
+		fetch(`http://${config.baseDomain}:8085/api/rank?profile=${this.props.profile}`, {crossDomain:true})
 		.then(response => response.json())
 		.then(response => {
 			if (typeof response.data !== "string") {
